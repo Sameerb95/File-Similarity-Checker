@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple registration form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <style>
+      html, body {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      }
+      body, h1, form, input, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+      color: #666;
+      }
+      h1 {
+      padding: 10px 0;
+      font-size: 50px;
+      font-weight: 300;
+      text-align: center;
+      }
+      hr {
+      color: #a9a9a9;
+      opacity: 0.3;
+      }
+      label{
+          color: #000000;
+          font-size:24px
+      }
+      form {
+      margin: 0 30px;
+      }
+      input[type=text] {
+      width: 100%;
+      height: 36px;
+      margin: 5px 0 0 -5px;
+      padding-left: 10px; 
+      border-radius: 0 5px 5px 0;
+      border: solid 1px #cbc9c9; 
+      box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+      background: #fff; 
+      }
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: 100%;
+      padding: 10px 0;
+      margin: 10px auto;
+      border-radius: 5px; 
+      border: none;
+      background: #1c87c9; 
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      }
+      button:hover {
+      background: #26a9e0;
+      }
+      div[class=container] {
+        padding-top: 70px;
+        padding-right: 30px;
+        padding-bottom: 50px;
+        padding-left: 80px;
+      }
+      div[class=form-group] {
+        padding-top: 20px;
+        
+        padding-bottom: 20px;
+     
+      }
+      p{
+        padding-top: 40px;
+        padding-bottom: 20px;
+        margin: 0 30px;
+        text-align: center;
+        
+      }
+    </style>
+  </head>
+  <body>
+   
+    {% block main %}
+    {% block content %}
+    {% for message in get_flashed_messages() %}
+    <p class="alert alert-warning" , style="position:absolute;font-size:24px; font-weight:600;">
+        {{ message }}
+    </p>
+    {% endfor %}
+    {% endblock %}  
+    <div class="container">
+      <div class="row">
+        <div class="col">
+    
+          <h1>File Similarities</h1>
+          <hr>
+          <form action="/files" method="POST">
+    
+            <div class="form-group">
+              <label>File 1</label>
+              <input type="text" class="form-control" id="file1" name="file1" placeholder="Enter the file1 name">
+            </div>
+    
+            <div class="form-group">
+              <label>File 2</label>
+              <input type="text" class="form-control" id="file2" name="file2" placeholder="Enter the file2 name">
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Find Similarities</button>
+    
+          </form>
+          <p style = "font-size:24px; font-weight:600;"> Your File similarity result is</p>
+          <p style = "font-size:60px; font-weight:600;"> {{result|default(0.0)}} </p>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    {% endblock %}
+  </body>
+</html>
